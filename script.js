@@ -14,7 +14,7 @@ async function start() {
   const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6);
   let image;
   let canvas;
-  document.body.append("Loaded");
+  document.body.append("AI Loaded");
   imageUpload.addEventListener("change", async () => {
     if (image) image.remove();
     if (canvas) canvas.remove();
@@ -38,6 +38,7 @@ async function start() {
         label: result.toString(),
       });
       drawBox.draw(canvas);
+      console.log(result.label);
     });
   });
 }
@@ -48,8 +49,9 @@ function loadLabeledImages() {
     labels.map(async (label) => {
       const descriptions = [];
       for (let i = 1; i <= 2; i++) {
+        //https://raw.githubusercontent.com/yashkumarkalyan/aitendance/main/labeled_images/${label}/${i}.jpg
         const img = await faceapi.fetchImage(
-          `https://raw.githubusercontent.com/yashkumarkalyan/aitendance/main/labeled_images/${label}/${i}.jpg`
+          `../labeled_images/${label}/${i}.jpg`
         );
         const detections = await faceapi
           .detectSingleFace(img)
