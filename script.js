@@ -57,7 +57,7 @@ function loadLabeledImages() {
       const descriptions = [];
       for (let i = 1; i <= 2; i++) {
         const img = await faceapi.fetchImage(
-          `https://raw.githubusercontent.com/yashkumarkalyan/aitendance/main/labeled_images/${label}/${i}.jpg`
+          `https://raw.githubusercontent.com/yashkumarkalyan/aitendance/blob/main/labeled_images/${label}/${i}.jpg`
         );
         const detections = await faceapi
           .detectSingleFace(img)
