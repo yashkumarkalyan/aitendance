@@ -12,15 +12,19 @@ async function start() {
   document.body.append(container);
   const labeledFaceDescriptors = await loadLabeledImages();
   const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6);
-  let image;
+  let image = document.getElementById("imageDisplay");
   let canvas;
-  document.body.append("Loaded");
+  document.getElementById("assetMessage").innerHTML = "Loaded";
+
   imageUpload.addEventListener("change", async () => {
     if (image) image.remove();
     if (canvas) canvas.remove();
     image = await faceapi.bufferToImage(imageUpload.files[0]);
     container.append(image);
+
+    image.style = "max-height: 35vh; max-width: 80vh; top: 0";
     canvas = faceapi.createCanvasFromMedia(image);
+    canvas.style = "max-height: 35vh; max-width: 80vh; top: 0";
     container.append(canvas);
     const displaySize = { width: image.width, height: image.height };
     faceapi.matchDimensions(canvas, displaySize);

@@ -2,12 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=1" />
+    <meta name="viewport" content="width=device-width,user-scalable=yes" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script defer src="face-api.min.js"></script>
     <script defer src="script.js"></script>
     <title>Face Recognition</title>
     <style>
+      @import url("https://fonts.googleapis.com/css?family=Rubik:700&display=swap");
+
       body {
         margin: 0;
         padding: 0;
@@ -24,9 +26,18 @@
         top: 0;
         left: 0;
       }
+      #imageDisplay {
+        height: 45vh;
+        width: 90vh;
+        top: 0;
+      }
     </style>
   </head>
   <body>
-    <input type="file" id="imageUpload" />
+    <p>
+      <input type="file" id="imageUpload" />
+    </p>
+    <img id="imageDisplay" />
+    <p id="assetMessage">Loading Models</p>
   </body>
 </html>
