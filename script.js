@@ -74,8 +74,9 @@ function loadLabeledImages() {
   const labels = [
     "Abhishek",
     "Akshat",
+    "Ayush",
     "Divyanshu",
-    "Ocean Negi",
+    "Ocean",
     "Pancham",
     "Piyush",
     "Pranshul",
