@@ -1,3 +1,4 @@
+"use strict";
 const imageUpload = document.getElementById("imageUpload");
 
 Promise.all([
@@ -14,13 +15,16 @@ async function start() {
   const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6);
   let image = document.getElementById("imageDisplay");
   let canvas;
-  document.getElementById("assetMessage").innerHTML = "Loaded";
+  document.getElementById("assetMessage").innerHTML = "Now Upload";
+  document.getElementById("assetMessage").style = "color: rgb(0, 143, 12);";
 
   imageUpload.addEventListener("change", async () => {
     if (image) image.remove();
     if (canvas) canvas.remove();
     image = await faceapi.bufferToImage(imageUpload.files[0]);
     container.append(image);
+
+    document.getElementById("assetMessage").innerHTML = "Upload another";
 
     image.style = "max-height: 35vh; max-width: 80vh; top: 0";
     canvas = faceapi.createCanvasFromMedia(image);
@@ -36,13 +40,33 @@ async function start() {
     const results = resizedDetections.map((d) =>
       faceMatcher.findBestMatch(d.descriptor)
     );
+    let count = 0,
+      ucount = 0;
     results.forEach((result, i) => {
+      if (
+        document
+          .getElementById("Attendees")
+          .innerText.toString()
+          .includes(result.label) == false
+      ) {
+        document.getElementById(
+          "Attendees"
+        ).innerHTML += `<li>${result.label}</li>`;
+        count++;
+      }
+
+      if (result.label === "unknown") ucount++;
+
+      console.log(result.label);
       const box = resizedDetections[i].detection.box;
       const drawBox = new faceapi.draw.DrawBox(box, {
         label: result.toString(),
       });
-      drawBox.draw(canvas);
     });
+
+    document.getElementById(
+      "attendees"
+    ).innerHTML = `Attendees : ${count} & unknown : ${ucount}`;
   });
 }
 

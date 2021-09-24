@@ -11,35 +11,75 @@
       @import url("https://fonts.googleapis.com/css?family=Rubik:700&display=swap");
 
       body {
+        text-align: center;
         margin: 0;
         padding: 0;
         width: 100vw;
         height: 100vh;
         display: flex;
-        justify-content: center;
+        justify-content: space-evenly;
         align-items: center;
         flex-direction: column;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
       }
 
       canvas {
         position: absolute;
-        top: 0;
         left: 0;
+        max-height: 35vh;
+        max-width: 80vh;
+        top: 0;
       }
       #imageDisplay {
-        height: 45vh;
-        width: 90vh;
+        height: 35vh;
+        width: 85vh;
         top: 0;
+      }
+      #upload {
+        top: 0;
+        bottom: 0;
+        padding: 5px 10px;
+        background: #00ad2d;
+        border: 1px solid #00ad2d;
+        position: relative;
+        color: #fff;
+        border-radius: 2px;
+        text-align: center;
+        float: left;
+        cursor: pointer;
+      }
+      #imageUpload {
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        z-index: 1000;
+        opacity: 0;
+        cursor: pointer;
+        right: 0;
+        height: 100%;
+        font-size: 24px;
+        width: 100%;
+      }
+      #assetMessage {
+        top: 0;
+        bottom: 0;
+        font-weight: 700;
+        color: rgb(143, 17, 0);
       }
     </style>
   </head>
   <body>
-    <center>
-    <p>
+    <div id="imageDisplay">
+      <img id="image" />
+    </div>
+    <div id="assetMessage">Loading Models, wait!!!</div>
+    <div id="upload">
+      Upload Image
       <input type="file" id="imageUpload" />
-    </p>
-      </center>
-    <img id="imageDisplay" />
-    <p id="assetMessage">Loading Models</p>
+    </div>
+    <div id="attendees">Attendees:0</div>
+
+    <ol title="Attendees" type="1" id="Attendees"></ol>
   </body>
 </html>
