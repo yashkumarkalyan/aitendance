@@ -71,7 +71,16 @@ async function start() {
 }
 
 function loadLabeledImages() {
-  const labels = ["Akshat", "Divyanshu", "Pancham", "Ocean Negi"];
+  const labels = [
+    "Abhishek",
+    "Akshat",
+    "Divyanshu",
+    "Ocean Negi",
+    "Pancham",
+    "Piyush",
+    "Pranshul",
+    "Rohit",
+  ];
   return Promise.all(
     labels.map(async (label) => {
       const descriptions = [];
