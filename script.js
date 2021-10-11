@@ -63,10 +63,9 @@ async function start() {
         label: result.toString(),
       });
     });
-
-    document.getElementById(
-      "attendees"
-    ).innerHTML = `Attendees : ${count} & unknown : ${ucount}`;
+    let s = 0;
+    document.getElementById("attendees").innerHTML = `Attendees : ${(s +=
+      count)} & unknown : ${ucount}`;
   });
 }
 
