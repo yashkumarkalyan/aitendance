@@ -1,6 +1,8 @@
 "use strict";
-const imageUpload = document.getElementById("imageUpload");
 
+let uploaded = document.getElementById("displayImage");
+let image;
+let canvas;
 Promise.all([
   faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
   faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
@@ -9,27 +11,29 @@ Promise.all([
 
 async function start() {
   const container = document.createElement("div");
-  container.style.position = "relative";
   document.body.append(container);
   const labeledFaceDescriptors = await loadLabeledImages();
   const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6);
-  let image = document.getElementById("imageDisplay");
-  let canvas;
+
   document.getElementById("assetMessage").innerHTML = "Now Upload";
   document.getElementById("assetMessage").style = "color: rgb(0, 143, 12);";
 
   imageUpload.addEventListener("change", async () => {
     if (image) image.remove();
+    if (uploaded) uploaded.remove();
     if (canvas) canvas.remove();
     image = await faceapi.bufferToImage(imageUpload.files[0]);
-    container.append(image);
 
+    container.append(image);
+    uploaded.style = " max-width: 100%;max-height: 50%;";
+    uploaded = image;
     document.getElementById("assetMessage").innerHTML = "Upload another";
 
     image.style = "max-height: 35vh; max-width: 80vh; top: 0";
     canvas = faceapi.createCanvasFromMedia(image);
-    canvas.style = "max-height: 35vh; max-width: 80vh; top: 0";
+    canvas.style = "max-width: 100%;max-height: 50%; position : absolute;";
     container.append(canvas);
+
     const displaySize = { width: image.width, height: image.height };
     faceapi.matchDimensions(canvas, displaySize);
     const detections = await faceapi
@@ -62,6 +66,7 @@ async function start() {
       const drawBox = new faceapi.draw.DrawBox(box, {
         label: result.toString(),
       });
+      drawBox.draw(canvas);
     });
 
     document.getElementById(
