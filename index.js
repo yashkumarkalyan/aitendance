@@ -1,6 +1,5 @@
 "use strict";
 
-let uploaded = document.getElementById("displayImage");
 let image;
 let canvas;
 Promise.all([
@@ -11,7 +10,7 @@ Promise.all([
 
 async function start() {
   const container = document.createElement("div");
-  document.body.append(container);
+  document.getElementById("haha").appendChild(container);
   const labeledFaceDescriptors = await loadLabeledImages();
   const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6);
 
@@ -20,18 +19,18 @@ async function start() {
 
   imageUpload.addEventListener("change", async () => {
     if (image) image.remove();
-    if (uploaded) uploaded.remove();
     if (canvas) canvas.remove();
     image = await faceapi.bufferToImage(imageUpload.files[0]);
 
     container.append(image);
-    uploaded.style = " max-width: 100%;max-height: 50%;";
-    uploaded = image;
+
     document.getElementById("assetMessage").innerHTML = "Upload another";
 
-    image.style = "max-height: 35vh; max-width: 80vh; top: 0";
+    image.style =
+      "max-height: 35vh; max-width: 80vh;position : absolute; top:48px; left:0;";
     canvas = faceapi.createCanvasFromMedia(image);
-    canvas.style = "max-width: 100%;max-height: 50%; position : absolute;";
+    canvas.style =
+      "max-height: 35vh; max-width: 80vh; position : absolute; top:48px; left:0;";
     container.append(canvas);
 
     const displaySize = { width: image.width, height: image.height };

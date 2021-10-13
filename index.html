@@ -2,84 +2,49 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,user-scalable=yes" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script defer src="face-api.min.js"></script>
-    <script defer src="script.js"></script>
-    <title>Face Recognition</title>
-    <style>
-      @import url("https://fonts.googleapis.com/css?family=Rubik:700&display=swap");
-
-      body {
-        text-align: center;
-        margin: 0;
-        padding: 0;
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        flex-direction: column;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-      }
-
-      canvas {
-        position: absolute;
-        left: 0;
-        max-height: 35vh;
-        max-width: 80vh;
-        top: 0;
-      }
-      #imageDisplay {
-        height: 35vh;
-        width: 85vh;
-        top: 0;
-      }
-      #upload {
-        top: 0;
-        bottom: 0;
-        padding: 5px 10px;
-        background: #00ad2d;
-        border: 1px solid #00ad2d;
-        position: relative;
-        color: #fff;
-        border-radius: 2px;
-        text-align: center;
-        float: left;
-        cursor: pointer;
-      }
-      #imageUpload {
-        top: 0;
-        bottom: 0;
-        position: absolute;
-        z-index: 1000;
-        opacity: 0;
-        cursor: pointer;
-        right: 0;
-        height: 100%;
-        font-size: 24px;
-        width: 100%;
-      }
-      #assetMessage {
-        top: 0;
-        bottom: 0;
-        font-weight: 700;
-        color: rgb(143, 17, 0);
-      }
-    </style>
+    <script defer src="index.js"></script>
+    <title>🕵️‍♀️ AItendance</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Inter:400,800,900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="index.css" rel="stylesheet" />
   </head>
   <body>
-    <div id="imageDisplay">
-      <img id="image" />
-    </div>
-    <div id="assetMessage">Loading Models, wait!!!</div>
-    <div id="upload">
-      Upload Image
-      <input type="file" id="imageUpload" />
-    </div>
-    <div id="attendees">Attendees:0</div>
+    <input type="file" id="imageUpload" style="display: none;" />
+    <label for="imageUpload" class="btn-bot Center">
+  <span>Upload Image</span>
+</label>
+<div class="navbar">
+  <a href="#home"><b>AItendance</b> </a>
+  <a href="https://github.com/yashkumarkalyan/aitendance/">Github</a>
+  <a href="https://yashkalyan.me/">Contact</a>
+</div>
+<div class="haha">
+  hELLO BHAIYA
+</div>
+    <div class="container">
+      </div>
+      <div id="sidebar">
+        <div id="attendees">Attendees:0</div>
+        <ol title="Attendees" type="1" id="Attendees"></ol>
+      </div>
+      <div id="content1">
+        When to Upload<br />
+        <h1 id="assetMessage">Loading Models, wait!!! <br> Don't Upload Now</h1>
+      </div>
+      <div id="content2">
+        Upload Image <br />for Attendance<br />
 
-    <ol title="Attendees" type="1" id="Attendees"></ol>
+        <div id="upload">
+         
+        </div>
+      </div>
+      <div id="content3">Content3</div>
+      <footer>Uploaded Image</footer>
+    </div>
   </body>
 </html>
